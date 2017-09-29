@@ -146,7 +146,9 @@
 \renewcommand{\subsubsection}{
   \@startsection{subsubsection}{1}{0pt}{1pt}{1pt}{\normalsize\bf}}
 
-% rename bibliography
-\renewcommand{\bibname}{\large References}
+% format bibliography
+\renewcommand{\bibname}{\large References} % rename bibliography
+\let\oldbibliography\thebibliography % save bibliography command
+\renewcommand{\thebibliography}[1]{\singlespacing \oldbibliography{#1}} % reducing spacing in the bibliography.
 
 \RequirePackage{hyperref} % import last
