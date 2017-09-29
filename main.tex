@@ -4,7 +4,7 @@
 % thesis information
 \title{Dissertation Title as an Inverted\\
 Pyramid with a Maximum\\
-of Three Lines}
+of Three Lines} % title no wider than 6 inches
 \author{Iman A. Student}
 \department{Department of Electrical and Computer Engineering}
 \papertype{dissertation} % {dissertation,prospectus,thesis}
@@ -21,17 +21,13 @@ of Three Lines}
 
 \begin{document}
 
-% front matter
-\hypersetup{pageanchor=false}
-\pagenumbering{roman}
+\frontmatter % prepare for introductory pages
 \includetitle % create title page
 \includeabstract{abstract} % create abstract using the file specified
 \includeacknowledgments{acknowledgments} % create acknowledgment page
 \includetableofcontents
 
-\hypersetup{pageanchor=true}
-\pagenumbering{arabic}
-
+\mainmatter % prepare for main pages
 \input{thesis_body}
 
 \bibliographystyle{IEEEtran}

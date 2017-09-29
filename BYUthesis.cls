@@ -5,11 +5,12 @@
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[T1]{fontenc} % looks better than default font encoding
 \RequirePackage{lmodern} % need a newer font to work with T1 font encoding
-\RequirePackage[hang,small,bf]{caption}
+\RequirePackage[hang,small,bf]{caption} % smaller captions
 \RequirePackage{etoolbox} % forlistloop, listadd
 \RequirePackage{setspace} % singlespacing, doublespacing
 \RequirePackage{tocloft} % configure table of contents and list of figs/tabs
 \RequirePackage{indentfirst} % indent the first paragraph in each section
+\RequirePackage{mathpazo} % Palatino font (optional)
 
 \DeclareOption{etd}{\newcommand{\etd}{etd}} %TODO implement ETD
 \ProcessOptions\relax
@@ -31,14 +32,16 @@
 \newcommand\tmpprintlist[1]{#1\\} % Print item in list
 
 % format title page
+%   note - the features of the titlepage env are not helpful here
 \newcommand{\includetitle}{%
-    \begin{titlepage}
     \pdfbookmark[0]{Title Page}{titlepage}
     \begin{center}
+    \doublespacing
     \@title  \par
     \vspace{\stretch{1}}
     \@author \par
     \vspace{\stretch{1}}
+    \singlespacing
     A \@papertype{} submitted to the faculty of\\
     Brigham Young University\\
     in partial fulfillment of the requirements for the degree of\\
@@ -50,12 +53,12 @@
     \doublespacing
     \@department\\
     Brigham Young University\\
-    \vspace{0.5in}
+    \vspace{\stretch{1}}
     Copyright \copyright\ \@copyrightyear\ \@author \\
     All Rights Reserved
-    %\cleardoublepage
     \end{center}
-    \end{titlepage}
+    \thispagestyle{empty} % suppress page number (and header/footer)
+    \clearpage
 }
 
 % format abstract page
@@ -64,37 +67,39 @@
   \begin{center}
   \singlespacing
   ABSTRACT\\
-  \vspace{0.15in}
+  \vspace*{\baselineskip}
   \@title\\
-  \vspace{0.15in}
-    \@author\\
-    \@department, BYU\\
-    \@degree
+  \vspace*{\baselineskip}
+  \@author\\
+  \@department, BYU\\
+  \@degree
   \end{center}
-  \par
-  \singlespacing
-  \setlength{\parskip}{1\baselineskip}
+  \par % ensure indent
+  \setlength{\parskip}{\baselineskip} % full line between paragraphs
+  \vspace{-\baselineskip} % only one line between degree and abstract
   \input{#1}
-  \vfill
+  \vfill % position keywords at bottom of page
   \noindent Keywords: \@keywords
-  \thispagestyle{empty} % supress page number (and header/footer)
+  \thispagestyle{empty} % suppress page number (and header/footer)
   \clearpage
 }
 
 % format acknowledgments page
 \newcommand{\includeacknowledgments}[1]{
-  \begin{center}
-  ACKNOWLEDGMENTS\\[45pt]
-  \end{center}
   \doublespacing
+  \begin{center}
+  ACKNOWLEDGMENTS
+  \end{center}
   \par
+  \vspace{-\baselineskip} % only one line between heading and text
   \input{#1}
-  \thispagestyle{empty} % supress page number (and header/footer)
+  \thispagestyle{empty} % suppress page number (and header/footer)
   \clearpage
 }
 
 % format table of contents
 \newcommand{\includetableofcontents}{
+  \doublespacing
   \pdfbookmark[0]{Table of Contents}{toc}
   \renewcommand{\cfttoctitlefont}{\large\bfseries} % change toc font
   \renewcommand{\contentsname}{Table of Contents} % rename toc
@@ -132,9 +137,10 @@
 
 % change chapter heading format
 \renewcommand{\@makechapterhead}[1]{{
-  \singlespacing
   \noindent \large \bf \@chapapp{} \thechapter \par
+  \singlespacing
   \noindent {#1} \par
+  \vspace*{\baselineskip}
 }}
 
 % update section/subsection labels
@@ -150,5 +156,13 @@
 \renewcommand{\bibname}{\large References} % rename bibliography
 \let\oldbibliography\thebibliography % save bibliography command
 \renewcommand{\thebibliography}[1]{\singlespacing \oldbibliography{#1}} % reducing spacing in the bibliography.
+
+\providecommand{\frontmatter}{
+  \hypersetup{pageanchor=false}
+  \pagenumbering{roman}}
+\providecommand{\mainmatter}{
+  \doublespacing
+  \hypersetup{pageanchor=true}
+  \pagenumbering{arabic}}
 
 \RequirePackage{hyperref} % import last
