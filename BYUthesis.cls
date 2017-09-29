@@ -33,7 +33,7 @@
 % format title page
 \newcommand{\includetitle}{%
     \begin{titlepage}
-    %\pdfbookmark[0]{Title Page}{titlepage}
+    \pdfbookmark[0]{Title Page}{titlepage}
     \begin{center}
     \@title  \par
     \vspace{\stretch{1}}
@@ -60,12 +60,11 @@
 
 % format abstract page
 \newcommand{\includeabstract}[1]{
-  %\pdfbookmark[0]{Abstract}{Abstract}
+  \pdfbookmark[0]{Abstract}{Abstract}
   \begin{center}
   \singlespacing
   ABSTRACT\\
   \vspace{0.15in}
-  %\afterpage{\cleardoublepage}
   \@title\\
   \vspace{0.15in}
     \@author\\
@@ -96,7 +95,7 @@
 
 % format table of contents
 \newcommand{\includetableofcontents}{
-  %\pdfbookmark[0]{Table of Contents}{toc}
+  \pdfbookmark[0]{Table of Contents}{toc}
   \renewcommand{\cfttoctitlefont}{\large\bfseries} % change toc font
   \renewcommand{\contentsname}{Table of Contents} % rename toc
   \renewcommand{\appendixname}{Paper} % rename appendices
@@ -114,12 +113,18 @@
        \protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}}}
    \makeatother
 
-  % add toc, list of tables, and list of figures
+  % add table of contents
   \tableofcontents
   \clearpage
+
+  % add list of tables
+  \phantomsection % necessary for hyperref link
   \addcontentsline{toc}{chapter}{List of Tables}
   \listoftables
   \clearpage
+
+  % add list of figures
+  \phantomsection % necessary for hyperref link
   \addcontentsline{toc}{chapter}{List of Figures}
   \listoffigures
   \clearpage
@@ -143,3 +148,5 @@
 
 % rename bibliography
 \renewcommand{\bibname}{\large References}
+
+\RequirePackage{hyperref} % import last

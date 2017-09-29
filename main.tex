@@ -22,18 +22,21 @@ of Three Lines}
 \begin{document}
 
 % front matter
+\hypersetup{pageanchor=false}
 \pagenumbering{roman}
 \includetitle % create title page
 \includeabstract{abstract} % create abstract using the file specified
 \includeacknowledgments{acknowledgments} % create acknowledgment page
 \includetableofcontents
+
+\hypersetup{pageanchor=true}
 \pagenumbering{arabic}
 
-\include{thesis_body}
+\input{thesis_body}
 
 \bibliographystyle{IEEEtran}
-\addcontentsline{toc}{chapter}{References}
 \bibliography{refs}
+\addcontentsline{toc}{chapter}{References}
 
 \appendix
 \chapter{Title of First Paper}
