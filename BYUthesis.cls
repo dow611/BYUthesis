@@ -9,6 +9,7 @@
 \RequirePackage{etoolbox} % forlistloop, listadd
 \RequirePackage{setspace} % singlespacing, doublespacing
 \RequirePackage{tocloft} % configure table of contents and list of figs/tabs
+\RequirePackage{indentfirst} % indent the first paragraph in each section
 
 \DeclareOption{etd}{\newcommand{\etd}{etd}} %TODO implement ETD
 \ProcessOptions\relax
@@ -77,6 +78,7 @@
   \input{#1}
   \vfill
   \noindent Keywords: \@keywords
+  \thispagestyle{empty} % supress page number (and header/footer)
   \clearpage
 }
 
@@ -88,15 +90,19 @@
   \doublespacing
   \par
   \input{#1}
+  \thispagestyle{empty} % supress page number (and header/footer)
   \clearpage
 }
 
 % format table of contents
 \newcommand{\includetableofcontents}{
   %\pdfbookmark[0]{Table of Contents}{toc}
-  \renewcommand{\cfttoctitlefont}{\large\bfseries}
-  \renewcommand{\contentsname}{Table of Contents}
-  \renewcommand{\appendixname}{Paper}
+  \renewcommand{\cfttoctitlefont}{\large\bfseries} % change toc font
+  \renewcommand{\contentsname}{Table of Contents} % rename toc
+  \renewcommand{\appendixname}{Paper} % rename appendices
+  \renewcommand{\cftchapdotsep}{\cftdotsep} % add dots to chapters in toc
+  \renewcommand{\cftloftitlefont}{\large\bfseries} % change lof font
+  \renewcommand{\cftlottitlefont}{\large\bfseries} % change lot font
 
    % This adds the words Chapter and Appendix to table of contents
    \newlength\shifttofitchapter
@@ -108,14 +114,32 @@
        \protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}}}
    \makeatother
 
+  % add toc, list of tables, and list of figures
   \tableofcontents
+  \clearpage
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+  \clearpage
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
   \clearpage
 }
 
+% change chapter heading format
+\renewcommand{\@makechapterhead}[1]{{
+  \singlespacing
+  \noindent \large \bf \@chapapp{} \thechapter \par
+  \noindent {#1} \par
+}}
 
+% update section/subsection labels
+% \@startsection{NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
+\renewcommand{\section}{
+  \@startsection{section}{1}{0pt}{1pt}{1pt}{\normalsize\bf}}
+\renewcommand{\subsection}{
+  \@startsection{subsection}{1}{0pt}{1pt}{1pt}{\normalsize\bf}}
+\renewcommand{\subsubsection}{
+  \@startsection{subsubsection}{1}{0pt}{1pt}{1pt}{\normalsize\bf}}
 
-
-
-
-%\renewcommand{\listtablename}{LIST OF TABLES}
-%\renewcommand{\listfigurename}{LIST OF FIGURES}
+% rename bibliography
+\renewcommand{\bibname}{\large References}

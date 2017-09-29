@@ -20,32 +20,26 @@ of Three Lines}
 \committeemember{Professor Five} % dissertation only
 
 \begin{document}
+
+% front matter
+\pagenumbering{roman}
 \includetitle % create title page
 \includeabstract{abstract} % create abstract using the file specified
 \includeacknowledgments{acknowledgments} % create acknowledgment page
 \includetableofcontents
+\pagenumbering{arabic}
 
-\chapter{Introduction}
-\lipsum[3]
-\section{First Idea}
-\lipsum[2]
-\section{Second Idea}
-\lipsum[4]
-\chapter{Contributions}
-\lipsum[2]
-\section{First Contribution}
-\lipsum[4]
-\section{Really, really long name of second contribution that is so verbose that it spans multiple lines}
-\lipsum[1]
-\chapter{Really, really long chapter title that is so verbose that it spans multiple lines}
-\lipsum[2]
+\include{thesis_body}
 
+\bibliographystyle{IEEEtran}
+\addcontentsline{toc}{chapter}{References}
+\bibliography{refs}
 
 \appendix
 \chapter{Title of First Paper}
-\lipsum[2]
-
-
+  \lipsum[1]
+  \section{First idea}
+  \lipsum[1]
 
 
 \end{document}
