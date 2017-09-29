@@ -1,0 +1,51 @@
+\documentclass{BYUthesis} % \documentclass[etd]{BYUthesis}
+\usepackage{lipsum} % generate filler text
+
+% thesis information
+\title{Dissertation Title as an Inverted\\
+Pyramid with a Maximum\\
+of Three Lines}
+\author{Iman A. Student}
+\department{Department of Electrical and Computer Engineering}
+\papertype{dissertation} % {dissertation,prospectus,thesis}
+\degree{Doctor of Philosophy} % {Doctor of Philosophy,Master of Science}
+\copyrightyear{2017}
+\keywords{big accomplishment, graduate degree, almost done}
+
+% graduate committee
+\committeemember{Professor One, Chair}
+\committeemember{Professor Two}
+\committeemember{Professor Three}
+\committeemember{Professor Four} % dissertation only
+\committeemember{Professor Five} % dissertation only
+
+\begin{document}
+\includetitle % create title page
+\includeabstract{abstract} % create abstract using the file specified
+\includeacknowledgments{acknowledgments} % create acknowledgment page
+\includetableofcontents
+
+\chapter{Introduction}
+\lipsum[3]
+\section{First Idea}
+\lipsum[2]
+\section{Second Idea}
+\lipsum[4]
+\chapter{Contributions}
+\lipsum[2]
+\section{First Contribution}
+\lipsum[4]
+\section{Really, really long name of second contribution that is so verbose that it spans multiple lines}
+\lipsum[1]
+\chapter{Really, really long chapter title that is so verbose that it spans multiple lines}
+\lipsum[2]
+
+
+\appendix
+\chapter{Title of First Paper}
+\lipsum[2]
+
+
+
+
+\end{document}
