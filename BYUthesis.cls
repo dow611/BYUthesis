@@ -165,4 +165,4 @@
   \hypersetup{pageanchor=true}
   \pagenumbering{arabic}}
 
-\RequirePackage{hyperref} % import last
+% \RequirePackage{hyperref} % import last
