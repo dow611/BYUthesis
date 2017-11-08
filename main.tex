@@ -1,6 +1,6 @@
 \documentclass{BYUthesis} % \documentclass[etd]{BYUthesis}
-\usepackage{lipsum} % generate filler text
-\usepackage{hyperref} % import last
+
+\usepackage{dissertation_style} % personal packages
 
 % thesis information
 \title{Dissertation Title as an Inverted\\
@@ -24,12 +24,12 @@ of Three Lines} % title no wider than 6 inches
 
 \frontmatter % prepare for introductory pages
 \includetitle % create title page
-\includeabstract{abstract} % create abstract using the file specified
-\includeacknowledgments{acknowledgments} % create acknowledgment page
+\includeabstract{tex/abstract} % create abstract using the file specified
+\includeacknowledgments{tex/acknowledgments} % create acknowledgment page
 \includetableofcontents
 
 \mainmatter % prepare for main pages
-\input{thesis_body}
+\input{tex/thesis_body}
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
