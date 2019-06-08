@@ -10,7 +10,9 @@
 \RequirePackage{setspace} % singlespacing, doublespacing
 \RequirePackage{tocloft} % configure table of contents and list of figs/tabs
 \RequirePackage{indentfirst} % indent the first paragraph in each section
-\RequirePackage{mathpazo} % Palatino font (optional)
+\RequirePackage{titlesec} % format chapter titles
+\usepackage[all]{nowidow} % remove widows and orphans
+%\RequirePackage{mathpazo} % Palatino font (optional)
 
 \DeclareOption{etd}{\newcommand{\etd}{etd}} %TODO implement ETD
 \ProcessOptions\relax
@@ -135,13 +137,9 @@
   \clearpage
 }
 
-% change chapter heading format
-\renewcommand{\@makechapterhead}[1]{{
-  \noindent \large \bf \@chapapp{} \thechapter \par
-  \singlespacing
-  \noindent {#1} \par
-  \vspace*{\baselineskip}
-}}
+% update chapter labels
+\titleformat{\chapter}[display]{\normalfont\large\bfseries}{\chaptertitlename\ \thechapter}{0pt}{\large}
+\titlespacing*{\chapter}{0pt}{30pt}{0pt} % ensures 2in top margin
 
 % update section/subsection labels
 % \@startsection{NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
@@ -164,5 +162,3 @@
   \doublespacing
   \hypersetup{pageanchor=true}
   \pagenumbering{arabic}}
-
-% \RequirePackage{hyperref} % import last
